@@ -1,0 +1,14 @@
+{
+    "websiteName": "fribble123",
+    "displayType": "flat/list",
+    "menus": [
+        {
+            "name": "menu1",
+            "datasource": "menu1.json"
+        },
+        {
+            "name": "menu2",
+            "datasource": "menu2.json"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+.flatContainer {
+  columns: 2;
+  column-gap: 20px;
+  padding: 0 30px;
+  margin: 20px
+}
+.flatContainer img {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.thumbnailImg {
+  cursor: pointer;
+}

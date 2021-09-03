@@ -1,0 +1,9 @@
+.webContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.mobileContainer {
+    display: flex;
+    flex-direction: column;
+}

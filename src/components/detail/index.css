@@ -1,0 +1,12 @@
+.detailContainer {
+    width: 100%;
+    height: calc(100vh - 20px);
+}
+.displayZone {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
