@@ -5,16 +5,32 @@ Easy log 希望使用者可以不需要去理解，学习 `服务器` 、 `前�
 只需要去写一些非常容易的 json 文件
 就可以让普通人想搭建自己的技术网站，博客，网络相册等等
 
+## 前期准备
+除了购买oss，其它步骤都是建网站必不可少的步骤，Elog 主要大大简化的还是开发部署环节。
+不过好在以下必要步骤都很简单，不涉及任何技术环节。
+
+
+这里以 阿里云 oss 为例子
+1. 购买一个域名
+2. 进行备案
+3. 申请 SSL 证书（免费的）
+4. 下载 SSL 证书 ningx zip 包
+5. 开通阿里云 oss （费用可以通过购买流量包进行抵用）
+6. 在传输管理中，域名管理中绑定域名和证书托管，证书托管时，将下载下来解压的证书复制黏贴
+7. 可以进行部署啦
+
 ## 如何使用
 1. 将 github release 中的 [dist.zip](https://github.com/fribble186/Elog/releases/download/0.0.1-beta01/dist.zip) 下载下来
+![](https://github.com/fribble186/Elog/blob/main/img/downloadDist.png?raw=true)
 2. 解压
 3. 将所有文件全放到自己的 cdn 中
+
 4. cdn 权限设置成公共读
 5. 可以配置软链接
 6. 可以配置域名管理
 7. 将 github release 中的 [configs.zip](https://github.com/fribble186/Elog/releases/download/0.0.1-beta01/configs.zip) 下载下来
 8. 将 configs 文件夹中的文件进行修改
-9. 上传到 cdn 中
+9.  上传到 cdn 中
 
 ## 关于 json 文件
 建议可以对照示例网站和示例 json 对比着看，很好理解的，也不需要死记硬背
