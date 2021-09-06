@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
-    clean: true
+    clean: true,
   },
   module: {
     rules: [
@@ -32,23 +32,43 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader?modules"],
+        test: /\.css$/i,
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "@teamsupercell/typings-for-css-modules-loader",
+          },
+          {
+            loader: "css-loader",
+            options: { modules: true },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.md?$/,
+        loader: "raw-loader",
+      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js", ".json"],
+    fallback: {
+      assert: require.resolve("assert/"),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new htmlWebpackPlugin({
       template: "public/index.html",
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
     }),
     // new ModuleFederationPlugin({
     //   name: 'elog_modules',

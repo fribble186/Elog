@@ -1,0 +1,33 @@
+.homeContainer {
+    width: 100%;
+    height: calc(100vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.homeContainer .title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+.homeContainer .subtitle {
+    font-size: 22px;
+    text-align: center;
+    padding: 0 10px;
+}
+.homeContainer .description {
+    font-size: 16px;
+    text-align: center;
+    padding: 0 10px;
+}
+.homeContainer div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.homeContainer img {
+    width: 80%;
+}

@@ -1,25 +1,7 @@
 {
-    "portfoliolName": "menu1",
-    "data": [
-        {
-            "imgSrc": "https://pic.rmb.bdstatic.com/bjh/down/a9824f04d960aaac96a882f8d0671536.jpeg",
-            "imgDesc": "就试试"
-        },
-        {
-            "imgSrc": "https://pics2.baidu.com/feed/a6efce1b9d16fdfa4236947e9a98815d95ee7bec.jpeg?token=fe3b73c3b5c22607100aa9ff165459e7",
-            "imgDesc": "手机"
-        },
-        {
-            "imgSrc": "https://pics2.baidu.com/feed/a6efce1b9d16fdfa4236947e9a98815d95ee7bec.jpeg?token=fe3b73c3b5c22607100aa9ff165459e7",
-            "imgDesc": "手机"
-        },
-        {
-            "imgSrc": "https://pics2.baidu.com/feed/a6efce1b9d16fdfa4236947e9a98815d95ee7bec.jpeg?token=fe3b73c3b5c22607100aa9ff165459e7",
-            "imgDesc": "手机"
-        },
-        {
-            "imgSrc": "https://pic.rmb.bdstatic.com/bjh/down/a9824f04d960aaac96a882f8d0671536.jpeg",
-            "imgDesc": "就试试"
-        }
-    ]
+    "key": "demo",
+    "title": "ELOG",
+    "subtitle": "方便的搭建个人网站",
+    "description": "像写日记一样帮你简单地创建维护一个个人网站 欢迎 STAR https://github.com/fribble186/Elog",
+    "imgSrc": ""
 }

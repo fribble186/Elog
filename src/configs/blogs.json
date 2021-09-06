@@ -1,0 +1,9 @@
+{
+    "portfoliolName": "menu2",
+    "data": [
+        {
+            "title": "博客的 markdown 示例",
+            "contentSrc": "demoBlog.md"
+        }
+    ]
+}

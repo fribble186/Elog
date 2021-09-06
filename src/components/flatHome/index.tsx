@@ -14,8 +14,7 @@ interface IListData {
   }[];
 }
 
-const FlatHome = (props: { datasource: string; needSecure: boolean }) => {
-  console.log(props);
+const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boolean }) => {
   const [flatData, setFlatData] = useState<IListData>();
   const [isDEV, setIsDEV] = useState<boolean>(false);
   const [loadedImgTotal, setLoadedImgTotal] = useState<number>(0);
@@ -79,11 +78,11 @@ const FlatHome = (props: { datasource: string; needSecure: boolean }) => {
           obvious={true}
         />
       ) : (
-        <img src={detailSrc} />
+        <img src={detailSrc} style={props.isWeb ? null : {width: '90%'}}/>
       )}
     </Detail>
   ) : (
-    <div className={styles.flatContainer}>
+    <div className={styles.flatContainer} style={props.isWeb ? null : {columns: 1}}>
       {flatData?.data?.map((flatImg, index) =>
         props.needSecure ? (
           <div

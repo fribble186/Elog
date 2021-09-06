@@ -1,6 +1,9 @@
 :global(span) {
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;;
 }
+:global(body) {
+    margin: 0 !important;
+}
 .pageContainer {
     width: 100%;
     height: 100%;

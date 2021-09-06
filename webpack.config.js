@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -34,12 +35,12 @@ module.exports = {
         use: [
           { loader: "style-loader" },
           {
-            loader: "@teamsupercell/typings-for-css-modules-loader"
+            loader: "@teamsupercell/typings-for-css-modules-loader",
           },
           {
             loader: "css-loader",
-            options: { modules: true }
-          }
+            options: { modules: true },
+          },
         ],
       },
       {
@@ -47,19 +48,30 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.md?$/,
+        loader: "raw-loader",
+      },
     ],
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"],
+    fallback: {
+      assert: require.resolve("assert/"),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new htmlWebpackPlugin({
       template: "public/index.html",
     }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
+    }),
   ],
 
   devServer: {
     historyApiFallback: true,
-  }
+  },
 };

@@ -1,0 +1,52 @@
+.mobileMenuContainer {
+    position: fixed;
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 5px #808080;
+    background-color: white;
+}
+.mobileMenuContainerFix {
+    margin-bottom: 60px;
+}
+
+.mobileMenuContainer .flex1 {
+    flex: 1;
+}
+
+.mobileMenuContainer svg {
+    width: 25px;
+}
+
+.popupMenuContainer {
+    position:fixed;
+    box-shadow: 2px 2px 5px #808080;
+    padding: 20px;
+    background-color: white;
+    top: 60px;
+    right: 8px;
+    animation: showMenuAnimation 0.1s linear;
+}
+
+.popupMenuContainer div {
+    padding: 10px;
+    border-bottom: 1px solid #808080;
+}
+
+@keyframes showMenuAnimation{
+    0%{
+        -webkit-transform: scale(0.1);
+        opacity: 0.1;
+    }
+    50%{
+        -webkit-transform: scale(0.5);
+        opacity: 0.5;
+    }
+    100%{
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}

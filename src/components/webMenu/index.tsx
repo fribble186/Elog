@@ -3,17 +3,17 @@ import type { IMenu } from "../../App";
 import styles from "./index.css";
 import {useHistory} from "react-router-dom";
 
-const Menu = (props: { menu: IMenu | undefined }) => {
+const Menu = (props: { menu: IMenu | undefined; homeKey: string | undefined }) => {
   const history = useHistory();
   return (
     <div className={styles.webMenuContainer}>
-      <div className={styles.title} onClick={()=>history.push(`/`)}>
+      <div className={styles.title} onClick={()=>history.push(`/${props.homeKey}`)}>
         <span>{props.menu.websiteName}</span>
       </div>
 
       {props.menu.menus.map(subMenu => (
-        <div className={styles.subMenu} key={subMenu.name} onClick={()=>history.push(`/${subMenu.name}`)}>
-            <span>{subMenu.name}</span>
+        <div className={styles.subMenu} key={subMenu.key} onClick={()=>history.push(`/${subMenu.key}`)}>
+            <span>{subMenu.label}</span>
         </div>
       ))}
     </div>

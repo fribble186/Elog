@@ -1,14 +1,17 @@
 {
-    "websiteName": "fribble123",
-    "displayType": "flat/list",
+    "websiteName": "ELOG",
     "menus": [
         {
-            "name": "menu1",
-            "datasource": "menu1.json"
+            "key": "demo-album",
+            "label": "相册",
+            "datasource": "album.json",
+            "displayType": "flat/list"
         },
         {
-            "name": "menu2",
-            "datasource": "menu2.json"
+            "key": "demo-blogs",
+            "label": "博客",
+            "datasource": "blogs.json",
+            "displayType": "list/flat"
         }
     ]
 }
