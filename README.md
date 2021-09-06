@@ -6,14 +6,15 @@ Easy log 希望使用者可以不需要去理解，学习 `服务器` 、 `前�
 就可以让普通人想搭建自己的技术网站，博客，网络相册等等
 
 ## 如何使用
-1. 将 github release 中的 zip 下载下来
+1. 将 github release 中的 [dist.zip](https://github.com/fribble186/Elog/releases/download/0.0.1-beta01/dist.zip) 下载下来
 2. 解压
 3. 将所有文件全放到自己的 cdn 中
 4. cdn 权限设置成公共读
-5. 配置软链接
-6. 配置域名管理
-7. 将源代码中的 config 文件夹中的文件进行修改
-8. 上传到 cdn 中
+5. 可以配置软链接
+6. 可以配置域名管理
+7. 将 github release 中的 [configs.zip](https://github.com/fribble186/Elog/releases/download/0.0.1-beta01/configs.zip) 下载下来
+8. 将 configs 文件夹中的文件进行修改
+9. 上传到 cdn 中
 
 ## 关于 json 文件
 建议可以对照示例网站和示例 json 对比着看，很好理解的，也不需要死记硬背
@@ -78,3 +79,7 @@ data 里应该填写
 
 ### demoBlog.md
 可以改名字，文字博客的示例文件
+
+## 未来的方向
+1. 对于普通使用者，提供更多方式，更快捷方便的修改 config json
+2. 对于懂前端的高级用户，引入 slot 模式，通过模块联邦的方式，允许用户插入自己制作的模块
