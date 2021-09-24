@@ -1,5 +1,6 @@
 declare namespace IndexCssNamespace {
   export interface IIndexCss {
+    contentContainer: string;
     mobileContainer: string;
     webContainer: string;
   }

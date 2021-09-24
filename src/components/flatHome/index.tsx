@@ -71,6 +71,7 @@ const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boole
 
   return isDEV ? null : detailSrc ? (
     <Detail clearDetailSrc={() => {setDetailSrc(undefined); setLoadedImgTotal(0); setStartEncrypt(false)}}>
+      <div className={styles.detailContainer}>
       {props.needSecure ? (
         <Encrypt
           encryptImgSrc={detailSrc}
@@ -79,7 +80,9 @@ const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boole
         />
       ) : (
         <img src={detailSrc} style={props.isWeb ? null : {width: '90%'}}/>
+        
       )}
+      </div>
     </Detail>
   ) : (
     <div className={styles.flatContainer} style={props.isWeb ? null : {columns: 1}}>

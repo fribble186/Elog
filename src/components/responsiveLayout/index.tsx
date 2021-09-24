@@ -10,7 +10,6 @@ const WEBWIDTH = 800;
 const ResponsiveLayout = (props: {
   children: any;
   menu: IMenu | undefined;
-  homeKey: string | undefined;
 }) => {
 
   const [isWeb, setIsWeb] = useState(
@@ -29,10 +28,12 @@ const ResponsiveLayout = (props: {
   });
 
   return <div className={isWeb ? styles.webContainer : styles.mobileContainer}>
-    {isWeb ? <WebMenu menu={props.menu} homeKey={props.homeKey}/> : <MoblieMenu menu={props.menu} homeKey={props.homeKey}/>}
+    {isWeb ? <WebMenu menu={props.menu}/> : <MoblieMenu menu={props.menu}/>}
+    <div className={styles.contentContainer}>
     {React.Children.map(props.children, child => {
       return React.cloneElement(child, {isWeb})
     })}
+    </div>
   </div>;
 };
 

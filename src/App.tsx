@@ -55,7 +55,7 @@ const Demo = () => {
             )}
           </Route>
         ))}
-        <Route path={`/${homeData?.key}`} key='/'>
+        <Route path={`/`} key='/'>
           <Homepage data={homeData}/>
         </Route>
       </Switch>
@@ -66,7 +66,7 @@ const Demo = () => {
     <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor} : null}>
       {menu ? (
         <Router>
-          <ResponsiveLayout menu={menu} homeKey={homeData?.key}>
+          <ResponsiveLayout menu={menu}>
             <Routes />
           </ResponsiveLayout>
         </Router>

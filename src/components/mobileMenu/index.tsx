@@ -3,7 +3,7 @@ import type { IMenu } from "../../App";
 import styles from "./index.css";
 import { useHistory } from "react-router-dom";
 
-const Menu = ({ menu, homeKey }: { menu: IMenu | undefined; homeKey: string | undefined }) => {
+const Menu = ({ menu }: { menu: IMenu | undefined }) => {
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -11,7 +11,7 @@ const Menu = ({ menu, homeKey }: { menu: IMenu | undefined; homeKey: string | un
     <div className={styles.mobileMenuContainer}>
       <div onClick={()=>{
         setShowMenu(false);
-        history.push(`/${homeKey}`);
+        history.push(`/`);
       }}>{menu.websiteName}</div>
       <div className={styles.flex1} />
       <div onClick={() => setShowMenu((prev) => !prev)}>
