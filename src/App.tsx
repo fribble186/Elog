@@ -30,6 +30,7 @@ interface IHomeData {
 
 interface ICusStyles {
   backgroundColor: string;
+  fontColor: string;
 }
 
 const Demo = () => {
@@ -63,7 +64,7 @@ const Demo = () => {
   }, [menu, homeData]);
 
   return (
-    <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor} : null}>
+    <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor, color: cusStyles.fontColor} : null}>
       {menu ? (
         <Router>
           <ResponsiveLayout menu={menu}>
