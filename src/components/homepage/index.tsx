@@ -8,10 +8,10 @@ interface IHomeData {
   imgSrc?: string;
 }
 
-const Homepage = ({ data }: { data: IHomeData }) => {
+const Homepage = ({ data, isWeb }: { data: IHomeData; isWeb: boolean }) => {
   console.log(data)
   return (
-    <div className={styles.homeContainer}>
+    <div className={styles.homeContainer} style={isWeb ? null :  {height: 'calc(100vh - 100px)'}}>
       <div className={styles.title}>
         <span>{data?.title}</span>
       </div>

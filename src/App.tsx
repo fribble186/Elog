@@ -31,6 +31,7 @@ interface IHomeData {
 interface ICusStyles {
   backgroundColor: string;
   fontColor: string;
+  backgroundImage: string;
 }
 
 const Demo = () => {
@@ -45,6 +46,7 @@ const Demo = () => {
   }, []);
 
   const Routes = useCallback(({isWeb})=> {
+    document.title = menu?.websiteName;
     return (
       <Switch>
         {menu.menus.map((item) => (
@@ -57,14 +59,14 @@ const Demo = () => {
           </Route>
         ))}
         <Route path={`/`} key='/'>
-          <Homepage data={homeData}/>
+          <Homepage data={homeData} isWeb={isWeb}/>
         </Route>
       </Switch>
     );
   }, [menu, homeData]);
 
   return (
-    <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor, color: cusStyles.fontColor} : null}>
+    <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor, color: cusStyles.fontColor, backgroundImage: cusStyles.backgroundImage} : null}>
       {menu ? (
         <Router>
           <ResponsiveLayout menu={menu}>
