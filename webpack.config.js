@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const { ModuleFederationPlugin } = webpack.container;
 
 module.exports = {
   mode: "development",
@@ -69,6 +70,11 @@ module.exports = {
       process: "process/browser",
       Buffer: ["buffer", "Buffer"],
     }),
+    new ModuleFederationPlugin({
+      remotes: {
+        "MF_module": "MF_module@./remoteEntry.js"
+      }
+    })
   ],
 
   devServer: {

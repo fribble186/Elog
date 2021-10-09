@@ -70,16 +70,16 @@ const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boole
   }, []);
 
   return isDEV ? null : detailSrc ? (
-    <Detail clearDetailSrc={() => {setDetailSrc(undefined); setLoadedImgTotal(0); setStartEncrypt(false)}}>
+    <Detail clearDetailSrc={() => {setDetailSrc(undefined); setLoadedImgTotal(0); setStartEncrypt(false)}} isWeb={props.isWeb}>
       <div className={styles.detailContainer}>
-      {props.needSecure ? (
+      {false && props.needSecure ? (
         <Encrypt
           encryptImgSrc={detailSrc}
           encryptString="fribble"
           obvious={true}
         />
       ) : (
-        <img src={detailSrc} style={props.isWeb ? null : {width: '90%'}}/>
+        <img src={detailSrc} style={props.isWeb ? null : {height: 'auto', width: '80vw'}}/>
         
       )}
       </div>
@@ -87,7 +87,7 @@ const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boole
   ) : (
     <div className={styles.flatContainer} style={props.isWeb ? null : {columns: 1}}>
       {flatData?.data?.map((flatImg, index) =>
-        props.needSecure ? (
+        false && props.needSecure ? (
           <div
             className={styles.thumbnailImg}
             key={`${flatData.portfoliolName}${index + 1}`}
