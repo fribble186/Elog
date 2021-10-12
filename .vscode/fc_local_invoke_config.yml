@@ -1,0 +1,9 @@
+templates:
+  template.yml:
+    guide-hello_world:
+      guide-nodejs10:
+        event: default_evt
+        events:
+          default_evt:
+            type: file
+            value: guide-hello_world\guide-nodejs10\event.evt

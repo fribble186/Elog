@@ -14,7 +14,7 @@ interface IListData {
   }[];
 }
 
-const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boolean }) => {
+const FlatHome = (props: { getDataSource: () => Promise<any>; needSecure: boolean; isWeb: boolean }) => {
   const [flatData, setFlatData] = useState<IListData>();
   const [isDEV, setIsDEV] = useState<boolean>(false);
   const [loadedImgTotal, setLoadedImgTotal] = useState<number>(0);
@@ -39,7 +39,7 @@ const FlatHome = (props: { datasource: string; needSecure: boolean; isWeb: boole
   }, [loadedImgTotal]);
 
   useEffect(() => {
-    getConfig(props.datasource).then((data: IListData) => setFlatData(data));
+    props.getDataSource().then((data: IListData) => setFlatData(data));
     if (props.needSecure) {
       document.oncontextmenu = function () {
         return false;

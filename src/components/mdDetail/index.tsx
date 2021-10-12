@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import {useHistory} from "react-router-dom";
 import getConfig from "../../configs/getConfig";
 
-const MDDetail = () => {
+const MDDetail = ({getMdDataSource}: {getMdDataSource: (mdSrc: string) => Promise<any>}) => {
   const history = useHistory();
   const [contentStr, setContentStr] = useState<string | undefined>();
 
@@ -13,8 +13,7 @@ const MDDetail = () => {
     if (history) {
       const [_, menuKey, ...detailRoute] = history.location.pathname.split('/');
       const contentSrc = detailRoute.join('/')
-      console.log(contentSrc)
-      getConfig(contentSrc).then((data: any) => {
+      getMdDataSource(contentSrc).then((data: any) => {
         console.log(data);
         if (data.__esModule) {
           setContentStr(data.default);

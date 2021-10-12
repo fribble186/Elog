@@ -40,44 +40,114 @@ const Demo = () => {
   const [homeData, setHomeData] = useState<IHomeData | undefined>();
   const [cusStyles, setCusStyles] = useState<ICusStyles | undefined>();
   const [MFHomepage, setMFHomepage] = useState<any>();
+  const [MFFlatHome, setMFFlatHome] = useState<any>();
+  const [MFListHome, setMFListHome] = useState<any>();
+  const [MFMDDetail, setMFMDDetail] = useState<any>();
 
   useEffect(() => {
     getConfig("menu.json").then((menu) => setMenu(menu));
     getConfig("homepage.json").then((home) => setHomeData(home));
     getConfig("cusStyles.json").then((style) => setCusStyles(style));
     // @ts-ignore
-    import("MF_module/homepage").then(homepage=>{
-      setMFHomepage(homepage)
-    }).catch(e=>console.log('CAN NOT LOAD MF OF HOMEPAGE', e));
+    import("MF_module/Homepage")
+      .then((homepage) => setMFHomepage(homepage))
+      .catch((e) => console.log("CAN NOT LOAD homepage MF SLOT", e));
+    // @ts-ignore
+    import("MF_module/FlatHome")
+      .then((flatHome) => setMFFlatHome(flatHome))
+      .catch((e) => console.log("CAN NOT LOAD flatHome MF SLOT", e));
+    // @ts-ignore
+    import("MF_module/ListHome")
+      .then((listHome) => setMFListHome(listHome))
+      .catch((e) => console.log("CAN NOT LOAD listHome MF SLOT", e));
+    // @ts-ignore
+    import("MF_module/MDDetail")
+      .then((detail) => setMFMDDetail(detail))
+      .catch((e) => console.log("CAN NOT LOAD MDDetail MF SLOT", e));
   }, []);
 
-  const Routes = useCallback(({isWeb})=> {
-    document.title = menu?.websiteName;
-    return (
-      <Switch>
-        {menu.menus.map((item) => (
-          <Route path={`/${item.key}/:detailKey`} key={`/${item.key}/detailKey`}>
-            <MDDetail/>
-          </Route>
-        ))}
-        {menu.menus.map((item) => (
-          <Route path={`/${item.key}`} key={`/${item.key}`}>
-            {item.displayType === "flat/list" ? (
-              <FlatHome datasource={item.datasource} needSecure={!!(item?.needSecure)} isWeb={isWeb}/>
+  const Routes = useCallback(
+    ({ isWeb }) => {
+      document.title = menu?.websiteName;
+      return (
+        <Switch>
+          {menu.menus.map((item) => {
+            return (
+              <Route
+                path={`/${item.key}/:detailKey`}
+                key={`/${item.key}/detailKey`}
+              >
+                {MFMDDetail ? (
+                  <MFMDDetail.default
+                    getMdDataSource={(mdSrc: string) => {
+                      if (mdSrc) return getConfig(mdSrc);
+                    }}
+                  />
+                ) : (
+                  <MDDetail
+                    getMdDataSource={(mdSrc: string) => {
+                      if (mdSrc) return getConfig(mdSrc);
+                    }}
+                  />
+                )}
+              </Route>
+            );
+          })}
+          {menu.menus.map((item) => (
+            <Route path={`/${item.key}`} key={`/${item.key}`}>
+              {item.displayType === "flat/list" ? (
+                MFFlatHome ? (
+                  <MFFlatHome
+                    getDataSource={() => getConfig(item.datasource)}
+                    isWeb={isWeb}
+                    needSecure={!!item?.needSecure}
+                  />
+                ) : (
+                  <FlatHome
+                    getDataSource={() => getConfig(item.datasource)}
+                    isWeb={isWeb}
+                    needSecure={!!item?.needSecure}
+                  />
+                )
+              ) : MFListHome ? (
+                <MFListHome
+                  getDataSource={() => getConfig(item.datasource)}
+                  isWeb={isWeb}
+                />
+              ) : (
+                <ListHome
+                  getDataSource={() => getConfig(item.datasource)}
+                  isWeb={isWeb}
+                />
+              )}
+            </Route>
+          ))}
+          <Route path={`/`} key="/">
+            {MFHomepage ? (
+              <MFHomepage.default dataSource={homeData} isWeb={isWeb} />
             ) : (
-              <ListHome datasource={item.datasource} />
+              <Homepage dataSource={homeData} isWeb={isWeb} />
             )}
           </Route>
-        ))}
-        <Route path={`/`} key='/'>
-          {MFHomepage ? <MFHomepage.default dataSource={homeData} isWeb={isWeb}/> : <Homepage dataSource={homeData} isWeb={isWeb}/>}
-        </Route>
-      </Switch>
-    );
-  }, [menu, homeData, MFHomepage]);
+        </Switch>
+      );
+    },
+    [menu, homeData, MFHomepage]
+  );
 
   return (
-    <div className={styles.pageContainer} style={cusStyles ? {background: cusStyles.backgroundColor, color: cusStyles.fontColor, backgroundImage: cusStyles.backgroundImage} : null}>
+    <div
+      className={styles.pageContainer}
+      style={
+        cusStyles
+          ? {
+              background: cusStyles.backgroundColor,
+              color: cusStyles.fontColor,
+              backgroundImage: cusStyles.backgroundImage,
+            }
+          : null
+      }
+    >
       {menu ? (
         <Router>
           <ResponsiveLayout menu={menu}>

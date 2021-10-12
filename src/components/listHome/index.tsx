@@ -11,12 +11,12 @@ interface IListData {
   }[];
 }
 
-const ListHome = ({ datasource }: { datasource: string }) => {
+const ListHome = ({ getDataSource }: { getDataSource: () => Promise<any>; isWeb: boolean }) => {
   const [listData, setListData] = useState<IListData>();
   const history = useHistory();
 
   useEffect(() => {
-    getConfig(datasource).then((data: IListData) => setListData(data));
+    getDataSource().then((data: IListData) => setListData(data));
   }, []);
 
   return (
