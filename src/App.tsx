@@ -8,7 +8,7 @@ import Loading from "./components/loading";
 import FlatHome from "./components/flatHome";
 import ListHome from "./components/listHome";
 import Homepage from "./components/homepage";
-import Detail from "./components/detail";
+import MDDetail from "./components/mdDetail";
 
 export interface IMenu {
   websiteName: string;
@@ -55,6 +55,11 @@ const Demo = () => {
     document.title = menu?.websiteName;
     return (
       <Switch>
+        {menu.menus.map((item) => (
+          <Route path={`/${item.key}/:detailKey`} key={`/${item.key}/detailKey`}>
+            <MDDetail/>
+          </Route>
+        ))}
         {menu.menus.map((item) => (
           <Route path={`/${item.key}`} key={`/${item.key}`}>
             {item.displayType === "flat/list" ? (
