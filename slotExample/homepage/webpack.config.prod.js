@@ -1,15 +1,13 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const webpack = require("webpack");
-const { ModuleFederationPlugin } = webpack.container;
+const {ModuleFederationPlugin} = require('webpack').container;
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].js",
+    publicPath: "http://localhost:3010/",
   },
   module: {
     rules: [
@@ -32,47 +30,33 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
-        use: [
-          { loader: "style-loader" },
-          {
-            loader: "@teamsupercell/typings-for-css-modules-loader",
-          },
-          {
-            loader: "css-loader",
-            options: { modules: true },
-          },
-        ],
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      {
-        test: /\.md?$/,
-        loader: "raw-loader",
-      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".json"],
-    fallback: {
-      assert: require.resolve("assert/"),
-    },
+    extensions: [".tsx", ".ts", ".js"],
   },
+  // externals: {
+  //     react: 'React',
+  //     'react-dom': 'ReactDOM'
+  // },
   plugins: [
     new MiniCssExtractPlugin(),
     new htmlWebpackPlugin({
       template: "public/index.html",
     }),
-    new webpack.ProvidePlugin({
-      process: "process/browser",
-      Buffer: ["buffer", "Buffer"],
-    }),
     new ModuleFederationPlugin({
-      remotes: {
-        "MF_module": "MF_module@./remoteEntry.js"
+      name: "MF_module",
+      filename: "remoteEntry.js",
+      exposes: {
+        './Homepage': './src/components/Homepage/index.tsx'
       },
       shared: {
         react: { eager: true},
@@ -80,8 +64,4 @@ module.exports = {
       }
     })
   ],
-
-  devServer: {
-    historyApiFallback: true,
-  },
 };

@@ -3,3 +3,6 @@
 yarn.lock
 /.history
 *.zip
+/.fun
+/.vscode
+/slotExample/homepage/src/components/Homepage/url.tsx
