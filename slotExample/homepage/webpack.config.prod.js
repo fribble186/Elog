@@ -7,7 +7,7 @@ module.exports = {
   mode: "production",
   entry: "./src/index.js",
   output: {
-    publicPath: "http://localhost:3010/",
+    filename: "MFhomepage[name].js",
   },
   module: {
     rules: [
